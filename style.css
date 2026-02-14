@@ -128,20 +128,38 @@ html {
 
 #main-message {
     font-family: 'Dancing Script', cursive;
-    font-size: 3.5rem;
-    color: #e60000;
-    text-shadow: 0 2px 10px rgba(255, 182, 193, 0.8);
+    font-size: 4rem;
+    /* Increased size */
+    color: #ff0000;
+    /* Pure red */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5);
+    /* Stronger glow */
     opacity: 0;
     transform: translateY(20px);
     z-index: 5;
     text-align: center;
     padding: 0 20px;
+    font-weight: 700;
+    /* Bold */
     transition: all 2s ease;
+    animation: textPulse 2s infinite alternate;
+}
+
+@keyframes textPulse {
+    from {
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5);
+        transform: scale(1);
+    }
+
+    to {
+        text-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 50, 50, 0.8);
+        transform: scale(1.05);
+    }
 }
 
 .message-visible {
     opacity: 1 !important;
-    transform: translateY(0) !important;
+    transform: translateY(0) scale(1) !important;
 }
 
 /* Scarface Blimp Style (Silver & LED Text) */
