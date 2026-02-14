@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Valentine's Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="scene-1" class="scene active">
+        <button id="press-me-btn">Press Me</button>
+    </div>
+
+    <div id="transition-overlay"></div>
+
+    <div id="scene-2" class="scene">
+        <div id="roses-container">
+            <!-- Roses will be injected here by JS -->
+        </div>
+
+        <div class="content-wrapper">
+            <h1 id="main-message">Happy Valentines Day Baby</h1>
+        </div>
+
+        <div id="blimp-container">
+            <div id="blimp-body">
+                <div class="blimp-shine"></div>
+                <div id="led-panel">
+                    <span id="scrolling-text">I LOVE YOU THABILE &nbsp;&nbsp;❤️&nbsp;&nbsp; I LOVE YOU THABILE
+                        &nbsp;&nbsp;❤️&nbsp;&nbsp; I LOVE YOU THABILE</span>
+                </div>
+                <div class="blimp-fin top"></div>
+                <div class="blimp-fin bottom"></div>
+                <div class="blimp-tail"></div>
+            </div>
+        </div>
+
+        <button id="mute-btn">🔊</button>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://raw.githubusercontent.com/noobsandnerdsgroup/audio/master/Gymnopedie%20No%201.mp3"
+            type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

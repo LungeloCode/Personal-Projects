@@ -1,0 +1,367 @@
+:root {
+    --primary-red: #ff4d4d;
+    --soft-glow: rgba(255, 77, 77, 0.6);
+    --bg-color: #fff0f5;
+    /* start with white, fade to soft pink */
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    transition: background-color 2s ease;
+}
+
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.scene.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Scene 1: Button */
+#scene-1 {
+    justify-content: center;
+    align-items: center;
+    background: white;
+    z-index: 10;
+}
+
+#press-me-btn {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    background-color: var(--primary-red);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--soft-glow);
+    animation: pulse 2s infinite ease-in-out;
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#press-me-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(255, 77, 77, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+    }
+}
+
+/* Transition Overlay */
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 20;
+    transition: opacity 1s ease;
+}
+
+/* Realistic Roses */
+.rose {
+    position: absolute;
+    font-size: 4rem;
+    /* Much bigger */
+    opacity: 0;
+    user-select: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    /* Add depth */
+    animation: fadeInRose 2s ease forwards, sway 5s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+@keyframes fadeInRose {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 0.8;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sway {
+    from {
+        transform: rotate(-10deg) translateX(-10px);
+    }
+
+    to {
+        transform: rotate(10deg) translateX(10px);
+    }
+}
+
+#main-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #e60000;
+    text-shadow: 0 2px 10px rgba(255, 182, 193, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 5;
+    text-align: center;
+    padding: 0 20px;
+    transition: all 2s ease;
+}
+
+.message-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Scarface Blimp Style (Silver & LED Text) */
+#blimp-container {
+    position: absolute;
+    top: 15%;
+    right: -600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 4;
+    transform: scale(1.2);
+    /* Make it bigger */
+}
+
+#blimp-body {
+    width: 220px;
+    height: 90px;
+    background: linear-gradient(to bottom, #dcdcdc 0%, #f0f0f0 40%, #a9a9a9 100%);
+    /* Silver metallic */
+    border-radius: 50% 50% 50% 50% / 40% 40% 40% 40%;
+    /* Elongated shape */
+    position: relative;
+    box-shadow:
+        inset 5px 5px 15px rgba(255, 255, 255, 0.8),
+        inset -5px -10px 15px rgba(0, 0, 0, 0.3),
+        0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    overflow: hidden;
+    /* For text scrolling inside */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Metallic Shine */
+.blimp-shine {
+    position: absolute;
+    top: 10px;
+    left: 20%;
+    /* Shine on nose (Left side now) */
+    width: 60%;
+    height: 10px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    z-index: 5;
+}
+
+/* Fins - Darker Silver */
+.blimp-fin {
+    position: absolute;
+    background: #808080;
+    border: 1px solid #666;
+    z-index: 1;
+}
+
+.blimp-fin.top {
+    width: 50px;
+    height: 35px;
+    right: 25px;
+    /* Tail on Right */
+    top: -20px;
+    transform: skewX(-20deg);
+    border-radius: 5px 20px 0 0;
+}
+
+.blimp-fin.bottom {
+    width: 50px;
+    height: 35px;
+    right: 25px;
+    /* Tail on Right */
+    bottom: -20px;
+    transform: skewX(20deg);
+    border-radius: 0 0 20px 5px;
+}
+
+.blimp-tail {
+    position: absolute;
+    right: -15px;
+    /* Tail on Right */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 50px;
+    background: #707070;
+    border-radius: 0 50% 50% 0;
+    /* Point to Right */
+    z-index: 1;
+}
+
+/* The World Is Yours Text Style */
+#led-panel {
+    width: 80%;
+    height: 24px;
+    background: #222;
+    /* Dark panel background */
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 5px #000;
+    z-index: 4;
+}
+
+#scrolling-text {
+    white-space: nowrap;
+    position: absolute;
+    right: -100%;
+    /* Start off right */
+    font-family: 'Courier New', monospace;
+    /* Digital look */
+    font-weight: bold;
+    color: #ff3333;
+    /* Red LED color */
+    text-transform: uppercase;
+    font-size: 14px;
+    text-shadow: 0 0 5px #ff0000;
+    /* Glow */
+    animation: scrollText 12s linear infinite;
+    /* Slower text scroll */
+    letter-spacing: 2px;
+}
+
+/* Remove Banner Styles */
+#banner,
+#banner-string {
+    display: none;
+}
+
+/* Animation for flying */
+@keyframes flyAcross {
+    0% {
+        transform: translateX(0);
+        right: -600px;
+    }
+
+    100% {
+        transform: translateX(-500vw);
+        right: 200%;
+    }
+}
+
+@keyframes bannerWave {
+
+    0%,
+    100% {
+        transform: rotate(-2deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+        left: 100%;
+    }
+
+    100% {
+        transform: translateX(-150%);
+        left: -50%;
+    }
+}
+
+/* Mute Button */
+#mute-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background 0.3s;
+    display: flex;
+    /* Flexbox for centering */
+    align-items: center;
+    /* Vertical center */
+    justify-content: center;
+    /* Horizontal center */
+}
+
+#mute-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    #main-message {
+        font-size: 2.2rem;
+    }
+
+    #blimp-body {
+        width: 120px;
+        height: 70px;
+    }
+
+    #banner {
+        font-size: 1.2rem;
+        padding: 5px 15px;
+        margin-right: 60px;
+    }
+
+    #banner-string {
+        margin-right: 60px;
+        height: 30px;
+    }
+
+    #mute-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
