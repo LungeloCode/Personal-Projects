@@ -84,9 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             rose.style.zIndex = Math.floor(Math.random() * 3);
 
             // Avoid center where text is
-            if (left > 20 && left < 80 && top > 30 && top < 70) {
-                rose.style.opacity = '0.4'; // Make them fainter behind text
-                rose.style.filter = 'blur(2px)'; // Optional depth effect
+            if (left > 15 && left < 85 && top > 35 && top < 65) {
+                continue; // Skip this rose generation if overlapping text
             }
 
             rosesContainer.appendChild(rose);
@@ -94,15 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function flyBlimp() {
-        // Using JS for animation end detection if needed, or just CSS class
-        // Let's us animate via Keyframes by assigning a class that has the animation
-        // Blimp moves very slow: 60s duration
+        // Reset state for loop
+        blimpContainer.style.transition = 'none';
+        blimpContainer.style.opacity = '1';
+        blimpContainer.style.animation = 'none';
+
+        // Trigger reflow
+        void blimpContainer.offsetWidth;
+
+        // Start animation: 60s duration
         blimpContainer.style.animation = 'flyAcross 60s linear forwards';
 
-        // Add fade out at the very end
-        setTimeout(() => {
-            blimpContainer.style.transition = 'opacity 2s ease';
-            blimpContainer.style.opacity = '0';
-        }, 58000); // Start fading before it fully leaves
+        // Loop: Restart after 60 seconds
+        setTimeout(flyBlimp, 60000);
     }
 });

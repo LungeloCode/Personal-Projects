@@ -1,6 +1,7 @@
 :root {
-    --primary-red: #ff4d4d;
-    --soft-glow: rgba(255, 77, 77, 0.6);
+    --primary-red: #ff0000;
+    /* Vivid Red */
+    --soft-glow: rgba(255, 0, 0, 0.6);
     --bg-color: #fff0f5;
     /* start with white, fade to soft pink */
 }
